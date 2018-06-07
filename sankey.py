@@ -24,7 +24,7 @@ import pandas as pd
 import seaborn as sns
 
 
-def sankey(left, right, leftWeight=None, rightWeight=None, colorDict=None,
+def sankey(left, right, leftWeight=None, rightWeight=None, colorPalette=None,
            leftLabels=None, rightLabels=None, aspect=4, rightColor=False,
            fontsize=14, figure_name=None,closePlot=False):
     '''
@@ -83,13 +83,17 @@ def sankey(left, right, leftWeight=None, rightWeight=None, colorDict=None,
     if len(rightLabels) == 0:
         rightLabels = pd.Series(df.right.unique()).unique()
 
-    # If no colorDict given, make one
-    if colorDict is None:
-        colorDict = {}
-        pal = "hls"
-        cls = sns.color_palette(pal, len(allLabels))
-        for i, l in enumerate(allLabels):
-            colorDict[l] = cls[i]
+    # Build colorDict from colorPalette
+    colorDict = {}
+    if(isinstance(colorPalette, list)):  # colors were passed in
+        # make sure colorPalette is big enough, or en-biggen it
+        while(len(colorPalette) < len(allLabels)):
+            colorPalette += colorPalette
+    else:  # If no colorPalette given, make one
+        colorPalette = sns.color_palette("hls", len(allLabels))
+    # actually build the colorDict
+    for i, l in enumerate(allLabels):
+        colorDict[l] = colorPalette[i]
 
     # Determine widths of individual strips
     ns_l = defaultdict()
@@ -189,6 +193,6 @@ def sankey(left, right, leftWeight=None, rightWeight=None, colorDict=None,
     plt.gca().axis('off')
     plt.gcf().set_size_inches(6, 6)
     if figure_name!=None:
-        plt.savefig("{}.png".format(figure_name), bbox_inches='tight', dpi=150)
+        plt.savefig("{}.svg".format(figure_name), bbox_inches='tight', format='svg')
     if closePlot:
         plt.close()
