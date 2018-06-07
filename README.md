@@ -10,6 +10,8 @@ Modify the interface of the main routine so as to allow passing of lists of colo
 (without specifying the actual names (maybe they aren't pre-known?)), outputting as
 SVG instead of PNG, and eventually add more resilience to the allowed input structures.
 
+![SVG Output](example.svg)
+
 ## Requirements
 
 Requires python-tk (for python 2.7) or python3-tk (for python 3.x) you can
