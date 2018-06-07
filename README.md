@@ -13,11 +13,14 @@ SVG instead of PNG, and eventually add more resilience to the allowed input stru
 ![SVG Output](example.svg)
 
 ## Requirements
+This fork has no intention of being compatible with Python 2 or less. If you
+require a Python 2 solution, see the original project (link at the top of this README).
 
-Requires python-tk (for python 2.7) or python3-tk (for python 3.x) you can
-install the other requirements with:
+Requires python3-tk (Use your system package manager, or install from source).
+The rest of the requirements are Python packages, found in the requirements.txt file.
+Install them with:
 
 ``` bash
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
 ```
 
