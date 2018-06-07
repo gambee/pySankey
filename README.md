@@ -21,6 +21,6 @@ The rest of the requirements are Python packages, found in the requirements.txt 
 Install them with:
 
 ``` bash
-    pip3 install -r requirements.txt
+$pip3 install -r requirements.txt
 ```
 
